@@ -1,11 +1,3 @@
-この記事を参考に
-https://zenn.dev/yusukebe/articles/06d9cc1714bfb7
+詳細
 
-```txt
-npm install
-npm run dev
-```
-
-```txt
-npm run deploy
-```
+https://zenn.dev/yg_kita/scraps/d8e051ba4be6fc
