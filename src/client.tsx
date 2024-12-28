@@ -1,17 +1,8 @@
-import { createRoot } from "react-dom/client";
-import Home from "./components/Home";
-import Auth from "./components/Auth";
-
-function App() {
+export const Hello = () => {
   return (
-    <>
-      <h1>welcome</h1>
-      <Home />
-      <Auth />
-    </>
-  )
-}
-
-const domNode = document.getElementById("root")!;
-const root = createRoot(domNode);
-root.render(<App />);
+    <div>
+      <h1>Hello World</h1>
+      <p>Click on the links above to see the code splitting in action.</p>
+    </div>
+  );
+};
