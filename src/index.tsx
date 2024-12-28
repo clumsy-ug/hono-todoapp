@@ -3,7 +3,11 @@ import { renderToString } from 'react-dom/server'
 
 const app = new Hono()
 
-app.get('/test', (c) => {
+app.get('/api', (c) => {
+  return c.json({ message: 'apiエンドポイントのホーム画面的な立ち位置のpathだよ' })
+})
+
+app.get('/api/test', (c) => {
   return c.text('テストだよ')
 })
 
