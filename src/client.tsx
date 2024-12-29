@@ -1,22 +1,15 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useParams } from "@tanstack/react-router";
 
 export const Hello = () => {
-  const navigate = useNavigate();
+  const { helloId } = useParams({ from: "/fire/$helloId" });
 
   return (
     <div>
       <h1>Hello World</h1>
       <p>Click on the links above to see the code splitting in action.</p>
-      <Link to="/">Go to Home</Link>
-      <button
-        onClick={() =>
-          navigate({
-            to: "/",
-          })
-        }
-      >
-        Go to Lazy
-      </button>
+      <p>
+        The current helloId is: <strong>{helloId}</strong>
+      </p>
     </div>
   );
 };
