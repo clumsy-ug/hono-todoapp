@@ -5,11 +5,13 @@ import {
 } from "@tanstack/react-router";
 import { Hello } from "./client";
 
-const rootRoute = createRootRoute({});
+const rootRoute = createRootRoute({
+  notFoundComponent: () => <div>Not Found... sorry</div>,
+});
 
 const helloRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/fire/$helloId",
+  path: "/hello",
   component: () => <Hello />,
 });
 const routeTree = rootRoute.addChildren([helloRoute]);
