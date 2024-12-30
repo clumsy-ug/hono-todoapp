@@ -13,7 +13,10 @@ const helloRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/hello",
   component: () => <Hello />,
+  pendingComponent: () => <div>Loading...Please wait</div>,
+  errorComponent: () => <div>There was an error!! Sorry</div>,
 });
+
 const routeTree = rootRoute.addChildren([helloRoute]);
 
 export const router = createRouter({ routeTree });

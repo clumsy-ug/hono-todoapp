@@ -8,6 +8,7 @@
     "deploy": "bun run build && wrangler pages deploy"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.62.11",
     "@tanstack/react-router": "^1.92.6",
     "@tanstack/router-devtools": "^1.92.6",
     "hono": "^4.6.14",
