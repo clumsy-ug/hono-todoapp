@@ -4,19 +4,22 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 import { Hello } from "./client";
+import { number, object, parse } from "valibot";
 
-const rootRoute = createRootRoute({
-  notFoundComponent: () => <div>Not Found... sorry</div>,
+const rootRoute = createRootRoute();
+
+const querySchema = object({
+  hoge: number(),
 });
 
 const helloRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/hello",
   component: () => <Hello />,
-  pendingComponent: () => <div>Loading...Please wait</div>,
-  errorComponent: () => <div>There was an error!! Sorry</div>,
+  validateSearch: (search: Record<string, unknown>) => {
+    return parse(querySchema, search);
+  },
 });
-
 const routeTree = rootRoute.addChildren([helloRoute]);
 
 export const router = createRouter({ routeTree });
