@@ -1,25 +1,19 @@
 import { useNavigate } from "@tanstack/react-router";
-
-interface Response {
-  ok: boolean,
-  message: string
-}
+import { fetchData } from "../utils/fetchData";
 
 export const Home = () => {
   const navigate = useNavigate()
 
   const toLogin = async() => {
-    const response = await fetch('/auth/login')
-    const obj: Response = await response.json();
-    if (obj.ok) {
+    const data = await fetchData('/auth/login')
+    if (data.ok) {
       navigate({ to: '/todos' })
     }
   }
 
   const toSignup = async() => {
-    const response = await fetch('/auth/signup')
-    const obj: Response = await response.json();
-    if (obj.ok) {
+    const data = await fetchData('/auth/signup')
+    if (data.ok) {
       navigate({ to: '/todos' })
     }
   }
