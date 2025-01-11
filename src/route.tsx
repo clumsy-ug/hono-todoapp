@@ -3,24 +3,24 @@ import {
   createRoute,
   createRouter,
 } from "@tanstack/react-router";
-import { Hello } from "./client";
-import { number, object, parse } from "valibot";
+import { Home } from "./components/Home";
+import { Todos } from "./components/Todos";
 
-const rootRoute = createRootRoute();
+const rootRoute = createRootRoute({});
 
-const querySchema = object({
-  hoge: number(),
-});
-
-const helloRoute = createRoute({
+const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/hello",
-  component: () => <Hello />,
-  validateSearch: (search: Record<string, unknown>) => {
-    return parse(querySchema, search);
-  },
+  path: "/",
+  component: () => <Home />
 });
-const routeTree = rootRoute.addChildren([helloRoute]);
+
+const todosRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/todos',
+  component: () => <Todos />
+})
+
+const routeTree = rootRoute.addChildren([indexRoute, todosRoute]);
 
 export const router = createRouter({ routeTree });
 

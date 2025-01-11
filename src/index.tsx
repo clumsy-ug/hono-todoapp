@@ -1,14 +1,37 @@
 import { Hono } from 'hono'
 import { renderToString } from 'react-dom/server'
+import { basicAuth } from 'hono/basic-auth'
 
 const app = new Hono()
 
-app.get('/api', (c) => {
-  return c.json({ message: 'apiエンドポイントのホーム画面的な立ち位置のpathだよ' })
+app.use(
+  '/auth/login',
+  basicAuth({
+    username: 'admin',
+    password: 'login',
+  })
+)
+
+app.use(
+  '/auth/signup',
+  basicAuth({
+    username: 'admin',
+    password: 'signup',
+  })
+)
+
+app.get('/auth/login', (c) => {
+  return c.json({
+    ok: true,
+    message: 'login ok'
+  })
 })
 
-app.get('/api/test', (c) => {
-  return c.text('テストだよ')
+app.get('/auth/signup', (c) => {
+  return c.json({
+    ok: true,
+    message: 'signup ok'
+  })
 })
 
 app.get('*', (c) => {
