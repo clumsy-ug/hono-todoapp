@@ -1,6 +1,9 @@
 import { Hono } from 'hono'
 import { renderToString } from 'react-dom/server'
 import { basicAuth } from 'hono/basic-auth'
+import { main } from './db'
+
+main()
 
 const app = new Hono()
 
