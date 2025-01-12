@@ -1,18 +1,6 @@
 import { Hono } from 'hono'
 import { renderToString } from 'react-dom/server'
 import { basicAuth } from 'hono/basic-auth'
-import { DATABASE_URL } from './.env'
-
-import postgres from "postgres";
-
-const main = async () => {
-  const sql = postgres(DATABASE_URL);
-
-  const result = await sql`SELECT id, name FROM users WHERE id = ${1}`;
-  console.log("resultだよ", result);
-};
-
-main();
 
 const app = new Hono()
 
