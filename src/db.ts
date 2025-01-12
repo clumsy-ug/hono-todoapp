@@ -1,5 +1,5 @@
 import postgres from "postgres";
-import { DATABASE_URL } from './.env'
+import { DATABASE_URL } from './env'
 
 const main = async () => {
   const sql = postgres(DATABASE_URL);

@@ -1,6 +1,6 @@
 import safeql from "@ts-safeql/eslint-plugin/config";
 import tseslint from "typescript-eslint";
-import { DATABASE_URL } from './src/.env';
+import { DATABASE_URL } from './src/env';
 
 export default tseslint.config(
   ...tseslint.configs.recommended,

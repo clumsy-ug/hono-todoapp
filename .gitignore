@@ -17,7 +17,7 @@ node_modules/
 
 # env
 .env
-.env.ts
+env.ts
 .env.production
 .dev.vars
 
