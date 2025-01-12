@@ -25,6 +25,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "libpg-query": "^16.3.0",
+    "typescript": "^5.7.3",
     "typescript-eslint": "^8.19.1",
     "vite": "^5.2.12",
     "wrangler": "^3.96.0"
