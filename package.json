@@ -21,8 +21,10 @@
     "@hono/vite-build": "^1.2.0",
     "@hono/vite-cloudflare-pages": "^0.4.2",
     "@hono/vite-dev-server": "^0.17.0",
+    "@ts-safeql/eslint-plugin": "^3.6.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "libpg-query": "^16.3.0",
     "vite": "^5.2.12",
     "wrangler": "^3.96.0"
   }
