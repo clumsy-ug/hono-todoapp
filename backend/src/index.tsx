@@ -7,7 +7,11 @@ const app = new Hono()
 app.use(renderer)
 
 // CORS should be called before the route
-app.use('/api/*', cors())
+app.use(
+  cors({
+    origin: 'http://localhost:5000',
+  })
+)
 
 app.get('/api', (c) => {
   return c.text('はじめる')
