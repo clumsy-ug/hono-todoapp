@@ -2,6 +2,8 @@
 
 ## フロントエンド
 - React(Vite)
+- TanStack Router
+- TanStack Query
 
 ## バックエンド
 - Hono
