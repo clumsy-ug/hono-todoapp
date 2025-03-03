@@ -1,13 +1,10 @@
-import { Suspense } from "react"
-import IndexPromiseReceiver from "./IndexPromiseReceiver"
-import IndexPending from "./IndexPending"
+import { Link } from "@tanstack/react-router";
+import { useGetIndex } from "../-functions";
 
 export default function Index() {
-  const response = fetch('http://localhost:5001/api')
+  const { data } = useGetIndex()
 
   return (
-    <Suspense fallback={<IndexPending />}>
-      <IndexPromiseReceiver response={response} />
-    </Suspense>
+    <Link to="/todos">{data}</Link>
   )
 }
