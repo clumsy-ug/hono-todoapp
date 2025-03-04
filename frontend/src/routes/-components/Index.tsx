@@ -5,6 +5,6 @@ export default function Index() {
   const { data } = useGetIndex()
 
   return (
-    <Link to="/todos">{data}</Link>
+    <Link to="/auth">{data}</Link>
   )
 }
