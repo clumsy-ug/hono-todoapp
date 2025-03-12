@@ -48,7 +48,7 @@ export default function SignUp() {
       <form onSubmit={onSubmit}>
         <input type="text" placeholder="メールアドレス" value={mailAddress} onChange={onMailChange} />
         <input type="password" placeholder="パスワード" value={password} onChange={onPassChange} />
-        <button type="submit">ログイン</button>
+        <button type="submit">新規登録</button>
       </form>
     </div>
   )
