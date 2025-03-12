@@ -3,8 +3,12 @@ import { getUser } from "~/backend/supabase/auth/getUser"
 
 export const checkSession = async() => {
   const user = await getUser()
+  const userId = user?.id
 
-  if (user) {
-    throw redirect({ to: '/todos' })
+  if (user && userId) {
+    throw redirect({
+      to: "/todos/$userId",
+      params: { userId }
+    })
   }
 }
