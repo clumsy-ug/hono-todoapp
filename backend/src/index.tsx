@@ -6,7 +6,6 @@ const app = new Hono()
 
 app.use(renderer)
 
-// CORS should be called before the route
 app.use(
   cors({
     origin: 'http://localhost:5000',
