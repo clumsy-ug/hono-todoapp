@@ -12,8 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as TodosIndexImport } from './routes/todos/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
+import { Route as TodosUserIdIndexImport } from './routes/todos/$userId/index'
 
 // Create/Update Routes
 
@@ -23,15 +23,15 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TodosIndexRoute = TodosIndexImport.update({
-  id: '/todos/',
-  path: '/todos/',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const AuthIndexRoute = AuthIndexImport.update({
   id: '/auth/',
   path: '/auth/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TodosUserIdIndexRoute = TodosUserIdIndexImport.update({
+  id: '/todos/$userId/',
+  path: '/todos/$userId/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,11 +53,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexImport
       parentRoute: typeof rootRoute
     }
-    '/todos/': {
-      id: '/todos/'
-      path: '/todos'
-      fullPath: '/todos'
-      preLoaderRoute: typeof TodosIndexImport
+    '/todos/$userId/': {
+      id: '/todos/$userId/'
+      path: '/todos/$userId'
+      fullPath: '/todos/$userId'
+      preLoaderRoute: typeof TodosUserIdIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -68,41 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthIndexRoute
-  '/todos': typeof TodosIndexRoute
+  '/todos/$userId': typeof TodosUserIdIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthIndexRoute
-  '/todos': typeof TodosIndexRoute
+  '/todos/$userId': typeof TodosUserIdIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/auth/': typeof AuthIndexRoute
-  '/todos/': typeof TodosIndexRoute
+  '/todos/$userId/': typeof TodosUserIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/todos'
+  fullPaths: '/' | '/auth' | '/todos/$userId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/todos'
-  id: '__root__' | '/' | '/auth/' | '/todos/'
+  to: '/' | '/auth' | '/todos/$userId'
+  id: '__root__' | '/' | '/auth/' | '/todos/$userId/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthIndexRoute: typeof AuthIndexRoute
-  TodosIndexRoute: typeof TodosIndexRoute
+  TodosUserIdIndexRoute: typeof TodosUserIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthIndexRoute: AuthIndexRoute,
-  TodosIndexRoute: TodosIndexRoute,
+  TodosUserIdIndexRoute: TodosUserIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +117,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/auth/",
-        "/todos/"
+        "/todos/$userId/"
       ]
     },
     "/": {
@@ -126,8 +126,8 @@ export const routeTree = rootRoute
     "/auth/": {
       "filePath": "auth/index.tsx"
     },
-    "/todos/": {
-      "filePath": "todos/index.tsx"
+    "/todos/$userId/": {
+      "filePath": "todos/$userId/index.tsx"
     }
   }
 }

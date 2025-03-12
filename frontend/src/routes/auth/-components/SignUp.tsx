@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { signUp } from "../-functions/signUp"
 import { useNavigate } from "@tanstack/react-router"
+import { signUp } from "../-functions/signUp"
+import { getUserId } from "src/routes/todos/$userId/-functions/getUserId"
 
 export default function SignUp() {
   const [mailAddress, setMailAddress] = useState<string>('')
@@ -35,8 +36,9 @@ export default function SignUp() {
 
     const ok = await signUp({ mailAddress, password })
     if (ok) {
+      const userId = await getUserId()
       alert('新規登録完了')
-      navigate({ to: '/todos' })
+      navigate({ to: `/todos/${userId}` })
       return
     }
   }
