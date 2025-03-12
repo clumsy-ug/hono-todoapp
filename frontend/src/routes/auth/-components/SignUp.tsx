@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { signUp } from "../-functions/signUp"
+import { useNavigate } from "@tanstack/react-router"
 
 export default function SignUp() {
   const [mailAddress, setMailAddress] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const navigate = useNavigate()
 
   const onMailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMailAddress(e.target.value)
@@ -30,7 +33,12 @@ export default function SignUp() {
       return
     }
 
-    alert('新規登録のリクエスト送る！')
+    const ok = await signUp({ mailAddress, password })
+    if (ok) {
+      alert('新規登録完了')
+      navigate({ to: '/todos' })
+      return
+    }
   }
 
   return (
