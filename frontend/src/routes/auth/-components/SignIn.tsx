@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { signIn } from "../-functions/signIn"
+import { useNavigate } from "@tanstack/react-router"
 
 export default function SignIn() {
   const [mailAddress, setMailAddress] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const navigate = useNavigate()
 
   const onMailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMailAddress(e.target.value)
@@ -30,7 +33,12 @@ export default function SignIn() {
       return
     }
 
-    alert('ログインのリクエスト送る！')
+    const ok = await signIn({ mailAddress, password })
+    if (ok) {
+      alert('ログイン成功')
+      navigate({ to: '/' })
+      return
+    }
   }
 
   return (
