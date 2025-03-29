@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
 import { signUp } from "../-functions/signUp"
-import { getUserId } from "src/routes/todos/$userId/-functions/getUserId"
+import { getUserId } from '../-functions/getUserId'
 
 export default function SignUp() {
   const [mailAddress, setMailAddress] = useState<string>('')
