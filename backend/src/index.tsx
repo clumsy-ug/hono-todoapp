@@ -12,9 +12,13 @@ app.use('/api/*', cors({
   })
 )
 
+app.get('/api/test', (c) => {
+  return c.text('テストだよー')
+})
+
 app.get('/api/todos/:userId', async (c) => {
   const userId = c.req.param('userId')
-  const result = await queryTodos(userId)
+  const result = queryTodos(userId)
 
   if (result === null) {
     return c.json({

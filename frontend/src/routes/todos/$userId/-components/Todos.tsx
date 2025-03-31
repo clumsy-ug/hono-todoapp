@@ -1,8 +1,10 @@
 import { Todo } from "../-types"
 import { useGetTodos } from "../-functions/useGetTodos"
+import { useParams } from "@tanstack/react-router"
 
 export default function Todos() {
-  const result: string | Todo[] = useGetTodos()
+  const { userId } = useParams({ from: '/todos/$userId/' })
+  const result: string | Todo[] = useGetTodos(userId)
 
   if (typeof result === 'string') {
     return <h2>まだTodoはありません</h2>

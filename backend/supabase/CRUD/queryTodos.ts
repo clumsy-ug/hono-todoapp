@@ -12,7 +12,7 @@ export const queryTodos = async(userId: string): Promise<null | Todo[]> => {
     throw new Error('Todo一覧取得に失敗')
   }
 
-  if (!data) {
+  if (data.length === 0) {
     return null
   }
 
