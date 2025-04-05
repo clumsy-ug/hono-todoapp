@@ -1,5 +1,18 @@
 import { UpdateTodoProps } from "../-types";
 
 export const updateTodo = async({ user_id, content }: UpdateTodoProps): Promise<void> => {
-  // post methodでhttp://localhost:5001/api/todos/:userIdにfetch。bodyなども指定
+  const res = await fetch(`http://localhost:5001/api/todos/${user_id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user_id,
+      content
+    })
+  })
+
+  if (!res.ok) {
+    throw new Error('TODO新規投稿に失敗しました')
+  }
 }
