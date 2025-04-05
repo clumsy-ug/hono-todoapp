@@ -4,7 +4,7 @@ import { getTodos } from "./getTodos"
 
 export const useGetTodos = (userId: string) => {
   const { data } = useSuspenseQuery({
-    queryKey: todoKeys.getTodos,
+    queryKey: todoKeys.all,
     queryFn: () => getTodos(userId),
   })
 
