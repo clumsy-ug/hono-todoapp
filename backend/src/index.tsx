@@ -35,4 +35,8 @@ app.get('/api/todos/:userId', async (c) => {
   }
 })
 
+app.post('/api/todos/:userId', async (c) => {
+  // write
+})
+
 export default app
