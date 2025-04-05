@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 // import { renderer } from './renderer'
 import { cors } from 'hono/cors'
 import { queryTodos } from '../supabase/CRUD/queryTodos'
-import { queryUpdateTodo } from 'supabase/CRUD/queryUpdateTodo'
+import { queryUpdateTodo } from '../supabase/CRUD/queryUpdateTodo'
 
 const app = new Hono()
 
