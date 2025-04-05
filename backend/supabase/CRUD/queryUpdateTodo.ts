@@ -7,7 +7,7 @@ export const queryUpdateTodo = async(newTodo: UpdateTodoProps): Promise<boolean>
   .insert(newTodo)
 
   if (error) {
-    throw new Error('DBへのクエリでエラーが発生しました')
+    throw new Error('DBへのクエリでエラーが発生しました: ', error)
   }
 
   return true
