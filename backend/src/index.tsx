@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 // import { renderer } from './renderer'
 import { cors } from 'hono/cors'
 import { queryTodos } from '../supabase/CRUD/queryTodos'
+import { queryUpdateTodo } from 'supabase/CRUD/queryUpdateTodo'
 
 const app = new Hono()
 
@@ -18,7 +19,7 @@ app.get('/api/test', (c) => {
 
 app.get('/api/todos/:userId', async (c) => {
   const userId = c.req.param('userId')
-  const result = queryTodos(userId)
+  const result = await queryTodos(userId)
 
   if (result === null) {
     return c.json({
@@ -36,7 +37,19 @@ app.get('/api/todos/:userId', async (c) => {
 })
 
 app.post('/api/todos/:userId', async (c) => {
-  // write
+  const body = await c.req.json()
+  const success = await queryUpdateTodo(body)
+  if (!success) {
+    return c.json({
+      status: 'failed',
+      message:  'APIでTODO更新に失敗しました'
+    })
+  } else {
+    return c.json({
+      status: 'success',
+      message: 'APIでTODO更新に成功しました'
+    })
+  }
 })
 
 export default app
