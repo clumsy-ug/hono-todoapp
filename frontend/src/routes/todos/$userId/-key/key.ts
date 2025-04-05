@@ -9,6 +9,5 @@ export const todoKeys = {
 */
 
 export const todoKeys = {
-  getTodos: ['getTodos'],
-  queryTodos: ['queryTodos']
+  all: ['todos'],
 } as const
