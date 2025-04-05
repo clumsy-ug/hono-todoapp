@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Todos from './-components/Todos'
+import TodoContainer from './-components/TodoContainer'
 import TodosError from './-components/TodosError'
 import TodosPending from './-components/TodosPending'
 
 export const Route = createFileRoute('/todos/$userId/')({
-  component: Todos,
+  component: TodoContainer,
   errorComponent: TodosError,
   pendingComponent: TodosPending
 })
