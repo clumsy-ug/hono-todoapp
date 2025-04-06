@@ -5,9 +5,3 @@ export type AuthProps = {
 
 export type SignUpProps = AuthProps
 export type SignInProps = AuthProps
-
-export interface SignInResponse {
-  status: string
-  message: string
-  mailAddress: string
-}

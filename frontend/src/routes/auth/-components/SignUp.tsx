@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
 import { signUp } from "../-functions/signUp"
-import { getUserId } from '../-functions/getUserId'
+import { getUserId } from '../../../../../backend/supabase/auth/getUserId'
 
 export default function SignUp() {
   const [mailAddress, setMailAddress] = useState<string>('')
@@ -48,8 +48,20 @@ export default function SignUp() {
       <h1>新規登録情報を入力</h1>
 
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="メールアドレス" value={mailAddress} onChange={onMailChange} />
-        <input type="password" placeholder="パスワード" value={password} onChange={onPassChange} />
+        <input
+          type="text"
+          placeholder="メールアドレス"
+          value={mailAddress}
+          onChange={onMailChange}
+          autoComplete="new-mailAddress"
+        />
+        <input
+          type="password"
+          placeholder="パスワード"
+          value={password}
+          onChange={onPassChange}
+          autoComplete="new-password"
+        />
         <button type="submit">新規登録</button>
       </form>
     </div>

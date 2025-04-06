@@ -1,12 +1,10 @@
 import { useState } from "react"
-import { useNavigate } from "@tanstack/react-router"
-import { signIn } from "../-functions/signIn"
-import { getUserId } from '../-functions/getUserId'
+import { useSignIn } from "../-functions/useSignIn"
 
 export default function SignIn() {
   const [mailAddress, setMailAddress] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const navigate = useNavigate()
+  const mutate = useSignIn()
 
   const onMailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMailAddress(e.target.value)
@@ -34,13 +32,7 @@ export default function SignIn() {
       return
     }
 
-    const ok = await signIn({ mailAddress, password })
-    if (ok) {
-      const userId = await getUserId()
-      alert('ログイン成功')
-      navigate({ to: `/todos/${userId}` })
-      return
-    }
+    mutate({ mailAddress, password })
   }
 
   return (
@@ -48,8 +40,19 @@ export default function SignIn() {
       <h1>ログイン情報を入力</h1>
 
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="メールアドレス" value={mailAddress} onChange={onMailChange} />
-        <input type="password" placeholder="パスワード" value={password} onChange={onPassChange} />
+        <input
+          type="text"
+          placeholder="メールアドレス"
+          value={mailAddress}
+          onChange={onMailChange}
+          autoComplete="current-mailAddress"
+        />
+        <input
+          type="password"
+          placeholder="パスワード"
+          value={password}
+          onChange={onPassChange}autoComplete="current-password"
+        />
         <button type="submit">ログイン</button>
       </form>
     </div>

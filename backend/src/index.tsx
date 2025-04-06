@@ -3,6 +3,8 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { queryTodos } from '../supabase/CRUD/queryTodos'
 import { queryUpdateTodo } from '../supabase/CRUD/queryUpdateTodo'
+import { signIn } from '../supabase/auth/signIn'
+import { getUserId } from '../supabase/auth/getUserId'
 
 const app = new Hono()
 
@@ -13,8 +15,19 @@ app.use('/api/*', cors({
   })
 )
 
-app.get('/api/test', (c) => {
-  return c.text('テストだよー')
+app.get('/api/get/userId', async (c) => {
+  const userId = await getUserId()
+  if (typeof userId === 'string') {
+    return c.json({
+      status: 'success',
+      userId
+    })
+  } else {
+    return c.json({
+      status: 'failed',
+      message: 'API: userId取得に失敗'
+    })
+  }
 })
 
 app.get('/api/todos/:userId', async (c) => {
@@ -36,18 +49,36 @@ app.get('/api/todos/:userId', async (c) => {
   }
 })
 
-app.post('/api/todos/:userId', async (c) => {
-  const body = await c.req.json()
-  const success = await queryUpdateTodo(body)
-  if (!success) {
+app.post('/api/signin', async (c) => {
+  const { mailAddress, password } = await c.req.json()
+  const success = await signIn({ mailAddress, password })
+  if (success) {
     return c.json({
-      status: 'failed',
-      message:  'APIでTODO更新に失敗しました'
+      status: 'success',
+      message: 'API: signInに成功しました',
+      mailAddress
     })
   } else {
     return c.json({
+      status: 'failed',
+      message: 'API: singInに失敗しました',
+      mailAddress
+    })
+  }
+})
+
+app.post('/api/todos/:userId', async (c) => {
+  const body = await c.req.json()
+  const success = await queryUpdateTodo(body)
+  if (success) {
+    return c.json({
       status: 'success',
-      message: 'APIでTODO更新に成功しました'
+      message: 'API: TODO更新に成功しました'
+    })
+  } else {
+    return c.json({
+      status: 'failed',
+      message:  'API: TODO更新に失敗しました'
     })
   }
 })
