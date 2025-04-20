@@ -1,24 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useNavigate } from "@tanstack/react-router"
 import { authKeys } from "../-key/key"
-import { fetchSignIn } from "./fetchSignIn"
-import { fetchUserId } from "./fetchUserId"
 import { AuthProps } from "../-types"
+import { signIn } from "./signIn"
 
 export const useSignIn = () => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
   const { mutate } = useMutation({
-    mutationFn: (credentials: AuthProps) => fetchSignIn(credentials),
-    onSuccess: async (data) => {
-      queryClient.setQueryData(authKeys.signIn, data);
+    mutationFn: (credentials: AuthProps) => signIn(credentials),
+    onSuccess: (userId) => {
+      if (!userId) {
+        alert('サインインの結果、userIdが取得できませんでした')
+        return
+      }
 
-      const userId = await fetchUserId()
-      if (!userId) return
-      
-      queryClient.setQueryData(authKeys.userId, userId);
-
+      queryClient.setQueryData(authKeys.signIn, userId)
       alert('ログイン成功')
       navigate({ to: `/todos/${userId}` }) 
     }

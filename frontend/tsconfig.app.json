@@ -28,5 +28,5 @@
        "~/*": ["../*"]
      }
   },
-  "include": ["src", "../backend/supabase/auth/signIn.ts", "../backend/supabase/auth/getUserId.ts"]
+  "include": ["src"]
 }

@@ -1,5 +1,4 @@
 export const authKeys = {
   signIn: ['signIn'],
-  signUn: ['signUp'],
-  userId: ['userId']
+  signUn: ['signUp']
 } as const

@@ -1,18 +1,23 @@
 import { supabase } from "~/backend/supabase/client"
 import { SignInProps } from "~/backend/supabase/types"
 
-export const signIn = async({ mailAddress, password }: SignInProps): Promise<boolean> => {
+export const signIn = async({ mailAddress, password }: SignInProps): Promise<boolean | string> => {
   const { data, error } = await supabase.auth.signInWithPassword({
     email: mailAddress,
     password
   })
 
-  if (!data || error) {
-    console.error('signIn.tsでエラーだよ')
+  if (error) {
+    console.error(error)
+    throw new Error('sign-inでエラー')
+  }
+
+  if (!data) {
+    console.error('signIn.tsでdataが無いよ')
     console.error(`data: ${data}`)
     console.error(`error: ${error}`)
     return false
   }
 
-  return true
+  return data.user.id
 }
