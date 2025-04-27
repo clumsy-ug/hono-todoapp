@@ -4,7 +4,7 @@ import { cors } from 'hono/cors'
 import { queryTodos } from '../supabase/CRUD/queryTodos'
 import { queryUpdateTodo } from '../supabase/CRUD/queryUpdateTodo'
 // import { signIn } from '../supabase/auth/signIn'
-import { getUserId } from '../supabase/auth/getUserId'
+import { registerUser } from 'supabase/auth/registerUser'
 
 const app = new Hono()
 
@@ -30,6 +30,22 @@ app.get('/api/todos/:userId', async (c) => {
       status: 'success',
       data: result,
       message: 'Todo取得完了'
+    })
+  }
+})
+
+app.post('api/register/user', async (c) => {
+  const body = await c.req.json()
+  const success = await registerUser(body)
+  if (success) {
+    return c.json({
+      status: 'success',
+      message: 'API: usersテーブルの新規登録に成功しました'
+    })
+  } else {
+    return c.json({
+      status: 'failed',
+      message:  'API: usersテーブルの新規登録に失敗しました'
     })
   }
 })
