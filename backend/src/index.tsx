@@ -4,7 +4,7 @@ import { cors } from 'hono/cors'
 import { queryTodos } from '../supabase/CRUD/queryTodos'
 import { queryUpdateTodo } from '../supabase/CRUD/queryUpdateTodo'
 // import { signIn } from '../supabase/auth/signIn'
-import { registerUser } from 'supabase/auth/registerUser'
+import { registerUser } from '../supabase/auth/registerUser'
 
 const app = new Hono()
 
@@ -34,7 +34,7 @@ app.get('/api/todos/:userId', async (c) => {
   }
 })
 
-app.post('api/register/user', async (c) => {
+app.post('/api/register/user', async (c) => {
   const body = await c.req.json()
   const success = await registerUser(body)
   if (success) {

@@ -1,7 +1,8 @@
 import { supabase } from "~/backend/supabase/client"
 import { SignUpProps } from "../-types"
+import { User } from '~/backend/node_modules/@supabase/auth-js/src/lib/types'
 
-export const signUp = async({ mailAddress, password }: SignUpProps): Promise<boolean | string> => {
+export const signUp = async({ mailAddress, password }: SignUpProps): Promise<null | User> => {
   const { data, error } = await supabase.auth.signUp({
     email: mailAddress,
     password: password
@@ -17,8 +18,8 @@ export const signUp = async({ mailAddress, password }: SignUpProps): Promise<boo
     console.error(`data: ${data}`)
     console.error(`data.user: ${data.user}`)
     console.error(`error: ${error}`)
-    return false
+    return null
   }
 
-  return data.user.id
+  return data.user
 }
