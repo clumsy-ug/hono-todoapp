@@ -1,12 +1,10 @@
 import { useState } from "react"
-import { useNavigate } from "@tanstack/react-router"
-import { signUp } from "../-functions/signUp"
-import { getUserId } from '../../../../../backend/supabase/auth/getUserId'
+import { useSignUp } from "../-functions/useSignUp"
 
 export default function SignUp() {
   const [mailAddress, setMailAddress] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const navigate = useNavigate()
+  const mutate = useSignUp()
 
   const onMailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMailAddress(e.target.value)
@@ -34,13 +32,7 @@ export default function SignUp() {
       return
     }
 
-    const ok = await signUp({ mailAddress, password })
-    if (ok) {
-      const userId = await getUserId()
-      alert('新規登録完了')
-      navigate({ to: `/todos/${userId}` })
-      return
-    }
+    mutate({ mailAddress, password })
   }
 
   return (
