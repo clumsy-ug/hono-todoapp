@@ -15,7 +15,7 @@ export const useSignUp = () => {
     onSuccess: async (user) => {
       if (!isValidUser(user) || !user?.email) return
 
-      const registrationSuccess = await handleUserRigistration(user.email)
+      const registrationSuccess = await handleUserRigistration(user.id, user.email)
       if (!registrationSuccess) return
 
       queryClient.setQueryData(authKeys.signUp, user.id)

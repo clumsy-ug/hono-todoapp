@@ -1,11 +1,12 @@
-export async function fetchRegisterUser(email: string): Promise<boolean> {
+export async function fetchRegisterUser(userId: string, email: string): Promise<boolean> {
   const res = await fetch("http://localhost:5001/api/register/user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email,
+      userId,
+      email
     })
   })
 

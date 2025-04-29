@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 // import { renderer } from './renderer'
 import { cors } from 'hono/cors'
 import { queryTodos } from '../supabase/CRUD/queryTodos'
-import { queryUpdateTodo } from '../supabase/CRUD/queryUpdateTodo'
+import { queryInsertTodo } from '../supabase/CRUD/queryInsertTodo'
 // import { signIn } from '../supabase/auth/signIn'
 import { registerUser } from '../supabase/auth/registerUser'
 
@@ -50,18 +50,18 @@ app.post('/api/register/user', async (c) => {
   }
 })
 
-app.post('/api/todos/:userId', async (c) => {
+app.post('/api/todos/insert/:userId', async (c) => {
   const body = await c.req.json()
-  const success = await queryUpdateTodo(body)
+  const success = await queryInsertTodo(body)
   if (success) {
     return c.json({
       status: 'success',
-      message: 'API: TODO更新に成功しました'
+      message: 'API: TODO作成に成功しました'
     })
   } else {
     return c.json({
       status: 'failed',
-      message:  'API: TODO更新に失敗しました'
+      message:  'API: TODO作成に失敗しました'
     })
   }
 })
