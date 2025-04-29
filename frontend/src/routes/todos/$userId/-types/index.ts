@@ -11,7 +11,7 @@ export interface ListProps {
   todos: TodoResponse
 }
 
-export interface UpdateTodoProps {
+export interface InsertTodoProps {
   user_id: string
   content: string 
 }

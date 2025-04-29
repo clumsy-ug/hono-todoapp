@@ -10,7 +10,10 @@ export default function TodoList({ todos }: ListProps) {
   return (
     <ul>
       {todos.map(todo => (
-        <li>{todo.id}: {todo.content}</li>
+        <div key={todo.id}>
+          <li>todoのid: {todo.id}</li>
+          <li>todoのcontent: {todo.content}</li>
+        </div>
       ))}
     </ul>
   )

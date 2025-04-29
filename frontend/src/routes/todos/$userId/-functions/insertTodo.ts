@@ -1,7 +1,7 @@
-import { UpdateTodoProps } from "../-types";
+import { InsertTodoProps } from "../-types";
 
-export const updateTodo = async({ user_id, content }: UpdateTodoProps): Promise<void> => {
-  const res = await fetch(`http://localhost:5001/api/todos/${user_id}`, {
+export const insertTodo = async({ user_id, content }: InsertTodoProps): Promise<void> => {
+  const res = await fetch(`http://localhost:5001/api/todos/insert/${user_id}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ export const updateTodo = async({ user_id, content }: UpdateTodoProps): Promise<
   })
 
   if (!res.ok) {
-    throw new Error('TODO新規投稿に失敗しました')
+    throw new Error('TODO作成に失敗しました')
   }
 
   const result = await res.json()

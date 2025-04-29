@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { useUpdateTodo } from "../-functions/useUpdateTodo"
+import { useInsertTodo } from "../-functions/useInsertTodo"
 import { useParams } from "@tanstack/react-router"
 import { checkEmpty } from "../-functions/chackEmpty"
 
 export default function TodoForm() {
   const [value, setValue] = useState<string>('')
   const { userId } = useParams({ from: '/todos/$userId/' })
-  const mutate = useUpdateTodo()
+  const mutate = useInsertTodo()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
