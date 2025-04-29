@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { authKeys } from "../-key/key"
 import { AuthProps } from "../-types"
 import { signIn } from "./signIn"
+import { isValidUserId } from "./isValidUserId"
 
 export const useSignIn = () => {
   const queryClient = useQueryClient()
@@ -11,10 +12,7 @@ export const useSignIn = () => {
   const { mutate } = useMutation({
     mutationFn: (credentials: AuthProps) => signIn(credentials),
     onSuccess: (userId) => {
-      if (!userId) {
-        alert('サインインの結果、userIdが取得できませんでした')
-        return
-      }
+      if (!isValidUserId(userId)) return
 
       queryClient.setQueryData(authKeys.signIn, userId)
       alert('ログイン成功')
