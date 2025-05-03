@@ -21,6 +21,8 @@ export default function TodoForm() {
       user_id: userId,
       content: value
     })
+
+    setValue('')
   }
 
   return (
