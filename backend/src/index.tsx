@@ -5,6 +5,7 @@ import { queryTodos } from '../supabase/CRUD/queryTodos'
 import { queryInsertTodo } from '../supabase/CRUD/queryInsertTodo'
 // import { signIn } from '../supabase/auth/signIn'
 import { registerUser } from '../supabase/auth/registerUser'
+import { queryDeleteTodo } from '../supabase/CRUD/queryDeleteTodo'
 
 const app = new Hono()
 
@@ -62,6 +63,22 @@ app.post('/api/todos/insert/:userId', async (c) => {
     return c.json({
       status: 'failed',
       message:  'API: TODO作成に失敗しました'
+    })
+  }
+})
+
+app.post('/api/todo/delete/:todoId', async (c) => {
+  const todoId = c.req.param('todoId')
+  const success = await queryDeleteTodo(todoId)
+  if (success) {
+    return c.json({
+      status: 'success',
+      message: 'API: TODO削除に成功しました'
+    })
+  } else {
+    return c.json({
+      status: 'failed',
+      message:  'API: TODO削除に失敗しました'
     })
   }
 })
