@@ -1,6 +1,6 @@
 import { InsertTodoProps } from "../-types";
 
-export const insertTodo = async({ user_id, content }: InsertTodoProps): Promise<void> => {
+export const fetchInsertTodo = async({ user_id, content }: InsertTodoProps): Promise<void> => {
   const res = await fetch(`http://localhost:5001/api/todos/insert/${user_id}`, {
     method: 'POST',
     headers: {
