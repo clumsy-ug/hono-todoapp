@@ -15,3 +15,8 @@ export interface InsertTodoProps {
   user_id: string
   content: string 
 }
+
+export interface UpdateTodoProps {
+  todoId: string
+  newContent: string
+}

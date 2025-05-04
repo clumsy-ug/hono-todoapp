@@ -10,3 +10,8 @@ export type RegisterUserProps = {
   userId: string
   email: string
 }
+
+export type UpdateTodoProps = {
+  todoId: string
+  newContent: string
+}
