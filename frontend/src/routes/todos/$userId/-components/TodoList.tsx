@@ -24,11 +24,12 @@ export default function TodoList({ todos }: ListProps) {
     if (newContent === nowContent) return
 
     mutateUpdate({ todoId, newContent })
+    toast.success('更新成功')
   }
 
   return (
     <>
-    <Toaster />
+      <Toaster />
       <ul style={{ paddingLeft: '0px' }}>
         {todos.map(todo => (
           <div key={todo.id} style={{ marginBottom: "10px" }}>

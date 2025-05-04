@@ -18,8 +18,6 @@ export const useUpdateTodo = () => {
       )
 
       queryClient.setQueryData(todoKeys.all, updatedTodos)
-
-      alert('更新成功')
     }
   })
 
