@@ -1,6 +1,7 @@
-import { useDeleteTodo } from "../-functions/useDeleteTodo";
-import { useUpdateTodo } from "../-functions/useUpdateTodo";
-import { ListProps } from "../-types";
+import { useDeleteTodo } from "../-functions/useDeleteTodo"
+import { useUpdateTodo } from "../-functions/useUpdateTodo"
+import { ListProps } from "../-types"
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function TodoList({ todos }: ListProps) {
   const mutateDelete = useDeleteTodo()
@@ -16,7 +17,7 @@ export default function TodoList({ todos }: ListProps) {
     const newContent = prompt("新しいTodoを入力してください", nowContent)
 
     if (!newContent) {
-      alert('空欄で登録はできません')
+      toast.error('空欄で登録はできません')
       return
     }
 
@@ -26,14 +27,17 @@ export default function TodoList({ todos }: ListProps) {
   }
 
   return (
-    <ul style={{ paddingLeft: '0px' }}>
-      {todos.map(todo => (
-        <div key={todo.id} style={{ marginBottom: "10px" }}>
-          <li style={{ display: 'inline', marginRight: "10px" }}>{todo.content}</li>
-          <button onClick={() => mutateDelete(todo.id)} style={{ marginRight: "10px" }}>削除</button>
-          <button onClick={() => handleUpdateTodo(todo.id, todo.content)}>編集</button>
-        </div>
-      ))}
-    </ul>
+    <>
+    <Toaster />
+      <ul style={{ paddingLeft: '0px' }}>
+        {todos.map(todo => (
+          <div key={todo.id} style={{ marginBottom: "10px" }}>
+            <li style={{ display: 'inline', marginRight: "10px" }}>{todo.content}</li>
+            <button onClick={() => mutateDelete(todo.id)} style={{ marginRight: "10px" }}>削除</button>
+            <button onClick={() => handleUpdateTodo(todo.id, todo.content)}>編集</button>
+          </div>
+        ))}
+      </ul>
+    </>
   )
 }
