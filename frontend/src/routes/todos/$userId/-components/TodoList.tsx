@@ -1,7 +1,7 @@
+import toast, { Toaster } from 'react-hot-toast'
 import { useDeleteTodo } from "../-functions/useDeleteTodo"
 import { useUpdateTodo } from "../-functions/useUpdateTodo"
 import { ListProps } from "../-types"
-import toast, { Toaster } from 'react-hot-toast'
 
 export default function TodoList({ todos }: ListProps) {
   const mutateDelete = useDeleteTodo()
