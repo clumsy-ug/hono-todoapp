@@ -19,7 +19,6 @@ export const useSignUp = () => {
       if (!registrationSuccess) return
 
       queryClient.setQueryData(authKeys.signUp, user.id)
-      alert('サインアップ成功')
       navigate({ to: `/todos/${user.id}` })
     }
   })
