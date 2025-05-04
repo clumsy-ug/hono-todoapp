@@ -13,6 +13,11 @@ export default function TodoList({ todos }: ListProps) {
     )
   }
 
+  const handleDeleteTodo = (todoId: string) => {
+    mutateDelete(todoId)
+    toast.success('削除成功')
+  }
+
   const handleUpdateTodo = (todoId: string, nowContent: string) => {
     const newContent = prompt("新しいTodoを入力してください", nowContent)
 
@@ -34,7 +39,7 @@ export default function TodoList({ todos }: ListProps) {
         {todos.map(todo => (
           <div key={todo.id} style={{ marginBottom: "10px" }}>
             <li style={{ display: 'inline', marginRight: "10px" }}>{todo.content}</li>
-            <button onClick={() => mutateDelete(todo.id)} style={{ marginRight: "10px" }}>削除</button>
+            <button onClick={() => handleDeleteTodo(todo.id)} style={{ marginRight: "10px" }}>削除</button>
             <button onClick={() => handleUpdateTodo(todo.id, todo.content)}>編集</button>
           </div>
         ))}
