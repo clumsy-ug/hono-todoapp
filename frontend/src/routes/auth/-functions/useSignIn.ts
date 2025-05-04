@@ -15,7 +15,6 @@ export const useSignIn = () => {
       if (!isValidUserId(userId)) return
 
       queryClient.setQueryData(authKeys.signIn, userId)
-      alert('ログイン成功')
       navigate({ to: `/todos/${userId}` }) 
     }
   })

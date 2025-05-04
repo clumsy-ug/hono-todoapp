@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast, { Toaster } from 'react-hot-toast';
 import { useSignIn } from "../-functions/useSignIn"
 
 export default function SignIn() {
@@ -18,43 +19,48 @@ export default function SignIn() {
     e.preventDefault()
 
     if (!mailAddress && !password) {
-      alert('メールアドレスとパスワードが空欄です')
+      toast.error('メールアドレスとパスワードが空欄です')
       return
     }
 
     if (!mailAddress) {
-      alert('メールアドレスが空欄です')
+      toast.error('メールアドレスが空欄です')
       return
     }
 
     if (!password) {
-      alert('パスワードが空欄です')
+      toast.error('パスワードが空欄です')
       return
     }
 
     mutate({ mailAddress, password })
+    toast.success('ログイン成功')
   }
 
   return (
-    <div>
-      <h1>ログイン情報を入力</h1>
+    <>
+      <Toaster />
 
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="メールアドレス"
-          value={mailAddress}
-          onChange={onMailChange}
-          autoComplete="current-mailAddress"
-        />
-        <input
-          type="password"
-          placeholder="パスワード"
-          value={password}
-          onChange={onPassChange}autoComplete="current-password"
-        />
-        <button type="submit">ログイン</button>
-      </form>
-    </div>
+      <div>
+        <h1>ログイン情報を入力</h1>
+
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            placeholder="メールアドレス"
+            value={mailAddress}
+            onChange={onMailChange}
+            autoComplete="current-mailAddress"
+          />
+          <input
+            type="password"
+            placeholder="パスワード"
+            value={password}
+            onChange={onPassChange}autoComplete="current-password"
+          />
+          <button type="submit">ログイン</button>
+        </form>
+      </div>
+    </>
   )
 }
