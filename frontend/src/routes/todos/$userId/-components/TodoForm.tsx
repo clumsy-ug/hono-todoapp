@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast, { Toaster } from 'react-hot-toast'
 import { useInsertTodo } from "../-functions/useInsertTodo"
 import { useParams } from "@tanstack/react-router"
 import { checkEmpty } from "../-functions/chackEmpty"
@@ -23,12 +24,16 @@ export default function TodoForm() {
     })
 
     setValue('')
+    toast.success('登録成功')
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={value} placeholder="新しいTodo" onChange={handleChange} />
-      <button type="submit">登録</button>
-    </form>
+    <>
+      <Toaster />
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={value} placeholder="新しいTodo" onChange={handleChange} />
+        <button type="submit">登録</button>
+      </form>
+    </>
   )
 }
